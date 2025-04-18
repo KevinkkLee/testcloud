@@ -29,21 +29,9 @@ jobs:
 
       - name: Clone BPB workjs
         run: |
-          wget -O origin.js https://github.com/KevinkkLee/BPB-Worker-Panel/releases/tag/v3.2.0/worker.js
+          wget -O _worker.js https://github.com/KevinkkLee/BPB-Worker-Panel/releases/tag/v3.2.0/_worker.js
 
-      - name: Obfuscate BPB worker js
-        run: |
-          javascript-obfuscator origin.js --output _worker.js \
-          --compact true \
-          --identifier-names-generator hexadecimal \
-          --rename-globals true \
-          --string-array true \
-          --string-array-encoding 'base64' \
-          --string-array-threshold 0.75 \
-          --transform-object-keys true \
-          --self-defending false \
-          --simplify true
-
+     
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
